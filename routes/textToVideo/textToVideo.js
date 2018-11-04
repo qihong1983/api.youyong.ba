@@ -17,6 +17,8 @@ var qs = require('querystring');
 
 var axios = require('axios');
 
+var urlencode = require('urlencode');
+
 
 
 var apiSecretKey = '1a3c1500ab253b636100c053e1ebea87';
@@ -68,10 +70,9 @@ axios({
 	method: 'post',
 	url: 'http://api.xfyun.cn/v1/service/v1/tts',
 	headers: headers,
-	data: encodeURIComponent(currentText)
+	data: 'text=' + urlencode(currentText)
 }).then(res => {
-
-	// console.log(res.data);
+	console.log(res.data);
 
 	if (res.headers['content-type'] == 'audio/mpeg') {
 		fs.writeFileSync(xCheckSum + '.wav', res.data, {
