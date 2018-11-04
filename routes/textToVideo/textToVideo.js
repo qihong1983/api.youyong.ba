@@ -89,6 +89,8 @@ axios({
 }).then(res => {
 
 	// console.log(res.data);
+
+	console.log(res.headers['content-type'], '###########');
 	if (res.headers['content-type'] == 'audio/mpeg') {
 		fs.writeFileSync(xCheckSum + '.wav', res.data, {
 			encoding: 'binary',
