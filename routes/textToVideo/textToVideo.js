@@ -70,7 +70,7 @@ axios({
 	method: 'post',
 	url: 'http://api.xfyun.cn/v1/service/v1/tts',
 	headers: headers,
-	data: 'text=' + "你好"
+	data: 'text=' + urlencode("你好")
 }).then(res => {
 	console.log(res.data);
 
