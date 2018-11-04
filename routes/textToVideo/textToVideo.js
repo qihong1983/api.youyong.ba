@@ -24,6 +24,7 @@ var urlencode = require('urlencode');
 var apiSecretKey = '1a3c1500ab253b636100c053e1ebea87';
 
 var options = {
+	"auf": "audio/L16;rate=16000",
 	"aue": "raw",
 	"voice_name": "xiaoyan",
 	"speed": "50",
