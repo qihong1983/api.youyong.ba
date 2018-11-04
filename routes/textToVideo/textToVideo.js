@@ -60,7 +60,8 @@ console.log(xParam, 'xParam');
 
 var xCurTime = Math.floor((new Date()).valueOf() / 1000);
 var md5 = crypto.createHash("md5");
-var xCheckSum = md5.update(API_KEY + xCurTime + xParam).digest("hex");
+// var xCheckSum = md5.update(API_KEY + xCurTime + xParam).digest("hex");
+var xCheckSum = md5.update(API_KEY + xCurTime + xParam);
 
 var currentText = '科大讯飞的接口文档写的太烂了';
 var APPID = '5bbf9b42';
