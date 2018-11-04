@@ -39,8 +39,8 @@ var content = qs.stringify(post_data);
 var apiSecretKey = '1a3c1500ab253b636100c053e1ebea87';
 
 var options = {
-	"auf": "audio/L16;rate=16000",
-	"aue": "lame",
+	"auf": "audio/L16;rate=8000",
+	"aue": "raw",
 	"voice_name": "xiaoyan",
 	"speed": "50",
 	"volume": "50",
@@ -90,7 +90,7 @@ axios({
 
 	// console.log(res.data);
 	if (res.headers['content-type'] == 'audio/mpeg') {
-		fs.writeFileSync(xCheckSum + '.mp3', res.data, {
+		fs.writeFileSync(xCheckSum + '.wav', res.data, {
 			encoding: 'binary',
 			flag: 'w+'
 		})
