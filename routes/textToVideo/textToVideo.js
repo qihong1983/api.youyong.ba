@@ -16,24 +16,7 @@ var qs = require('querystring');
 
 
 var axios = require('axios');
-var post_data = {
-	a: 123,
-	time: new Date().getTime()
-}; //这是需要提交的数据  
 
-
-
-var content = qs.stringify(post_data);
-
-// var options = {
-// 	hostname: 'http://api.xfyun.cn/v1/service/v1/tts',
-// 	port: 10086,
-// 	path: '/pay/pay_callback',
-// 	method: 'POST',
-// 	headers: {
-// 		'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-// 	}
-// };
 
 
 var apiSecretKey = '1a3c1500ab253b636100c053e1ebea87';
@@ -85,12 +68,13 @@ axios({
 	method: 'post',
 	url: 'http://api.xfyun.cn/v1/service/v1/tts',
 	headers: headers,
-	data: 'text=' + encodeURIComponent(currentText)
+	data: {
+		'text': encodeURIComponent(currentText)
+	}
 }).then(res => {
 
 	// console.log(res.data);
 
-	console.log(res.headers['content-type'], '###########');
 	if (res.headers['content-type'] == 'audio/mpeg') {
 		fs.writeFileSync(xCheckSum + '.wav', res.data, {
 			encoding: 'binary',
