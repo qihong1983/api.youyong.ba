@@ -41,7 +41,7 @@ var apiSecretKey = '1a3c1500ab253b636100c053e1ebea87';
 var options = {
 	"auf": "audio/L16;rate=16000",
 	"aue": "raw",
-	"voice_name": "xiaoyan",
+	"voice_name": "xiaoping",
 	"speed": "50",
 	"volume": "50",
 	"pitch": "50",
@@ -66,6 +66,10 @@ var currentText = '科大讯飞的接口文档写的太烂了';
 var APPID = '5bbf9b42';
 var API_KEY = '5af95771bb7c1574f1ccc532871c530a';
 
+
+console.log(API_KEY, '#############', xCurTime);
+
+console.log(xCheckSum, '111');
 
 var headers = {
 	"X-Appid": APPID,
