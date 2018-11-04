@@ -68,9 +68,7 @@ axios({
 	method: 'post',
 	url: 'http://api.xfyun.cn/v1/service/v1/tts',
 	headers: headers,
-	data: {
-		'text': encodeURIComponent(currentText)
-	}
+	data: encodeURIComponent(currentText)
 }).then(res => {
 
 	// console.log(res.data);
