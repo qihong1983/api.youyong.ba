@@ -55,6 +55,9 @@ var options = {
 
 // var xParam = JSON.stringify(options).toString('base64');
 
+var currentText = '科大讯飞的接口文档写的太烂了';
+var APPID = '5bbf9b42';
+var API_KEY = '5af95771bb7c1574f1ccc532871c530a';
 var xParam = new Buffer(JSON.stringify(options)).toString('base64')
 console.log(xParam, 'xParam');
 
@@ -63,9 +66,6 @@ var md5 = crypto.createHash("md5");
 // var xCheckSum = md5.update(API_KEY + xCurTime + xParam).digest("hex");
 var xCheckSum = md5.update(API_KEY + xCurTime + xParam).digest("hex");
 
-var currentText = '科大讯飞的接口文档写的太烂了';
-var APPID = '5bbf9b42';
-var API_KEY = '5af95771bb7c1574f1ccc532871c530a';
 
 
 console.log(API_KEY, '#############', xCurTime);
