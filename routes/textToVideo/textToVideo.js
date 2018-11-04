@@ -24,7 +24,6 @@ var urlencode = require('urlencode');
 var apiSecretKey = '1a3c1500ab253b636100c053e1ebea87';
 
 var options = {
-	"auf": "audio/L16;rate=8000",
 	"aue": "raw",
 	"voice_name": "xiaoyan",
 	"speed": "50",
@@ -70,7 +69,7 @@ axios({
 	method: 'post',
 	url: 'http://api.xfyun.cn/v1/service/v1/tts',
 	headers: headers,
-	data: 'text=' + urlencode("你好")
+	data: 'text=' + urlencode("你好你好你好你好你好你好你好你好你好")
 }).then(res => {
 	console.log(res.data);
 
