@@ -6,7 +6,7 @@ const xfUrl = "http://api.xfyun.cn/v1/service/v1/tts"
 const xfAppid = "5bbf9b42";
 const xfApiKey = "5af95771bb7c1574f1ccc532871c530a";
 
-function tts(name, text) {
+function tts() {
     var jsonOri = {
         "auf": "audio/L16;rate=16000",
         "aue": "raw",
@@ -17,7 +17,7 @@ function tts(name, text) {
     var curTime = Date.parse(new Date()).toString().slice(0, -3);
     var checkSum = crypto.createHash('md5').update(xfApiKey + curTime + param).digest('hex');
     let sendtext = {
-        'text': '的过程。每个周期，投诉都围绕进展。整个团队正致力于改进流程，但我觉得仍有工作要做。老实说，谷歌不再是一个小的初创公司，在一个8万人的大公司中寻找平衡很难。这让我想到了 Google Cloud。'
+        'text': '明天的天气怎么样'
     }
     var options = {
         url: xfUrl,
@@ -29,7 +29,7 @@ function tts(name, text) {
             "X-CurTime": curTime,
             "X-CheckSum": checkSum,
         },
-        form: text,
+        form: sendtext,
         encoding: null
     }
 
@@ -39,12 +39,12 @@ function tts(name, text) {
             if (headers["content-type"] == "audio/mpeg") {
                 console.log("成功");
 
-                fs.writeFile(name + ".wav", body, function(err) {
+                fs.writeFile("audio.wav", body, function(err) {
                     if (err)
                         return console.error(err);
                 })
             } else {
-                console.log(response.body);
+                console.log(response.body, 'asdfadfasdfasdf');
             }
         } else {
             console.log(error);
@@ -52,7 +52,4 @@ function tts(name, text) {
     });
 }
 
-
-var arguments = process.argv.splice(2);
-console.log('所传递的参数是：', arguments);
-tts(arguments[0], arguments[1]);
+tts();
