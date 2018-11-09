@@ -29,7 +29,7 @@ function tts(name, text) {
 			"X-CurTime": curTime,
 			"X-CheckSum": checkSum,
 		},
-		form: text,
+		form: sendtext,
 		encoding: null
 	}
 
