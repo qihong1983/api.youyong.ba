@@ -21,6 +21,10 @@ var updateUuid = require('./routes/updateUuid');
 //查询 queryUuid 
 var queryUuid = require('./routes/queryUuid');
 
+//文字转语音
+
+var textToAudio = require('./routes/textToAudio/textToAudio');
+
 
 
 let jwt = require('jsonwebtoken');
@@ -64,6 +68,7 @@ app.use('/updateUuid', updateUuid);
 
 app.use('/queryUuid', queryUuid);
 
+app.use('/textToAudio', textToAudio);
 
 
 // catch 404 and forward to error handler
