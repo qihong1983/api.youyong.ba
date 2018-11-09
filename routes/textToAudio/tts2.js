@@ -44,7 +44,7 @@ function tts() {
                         return console.error(err);
                 })
             } else {
-                console.log(response.body, 'asdfadfasdfasdf');
+                console.log(response.body);
             }
         } else {
             console.log(error);
