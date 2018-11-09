@@ -66,7 +66,7 @@ router.use(async function(req, res, next) {
 			// if (headers["content-type"] == "audio/mpeg") {
 			console.log("成功");
 
-			await fs.writeFile("default.wav", body, async function(err) {
+			await fs.writeFile("./public/" + req.query.title + ".wav", body, async function(err) {
 
 				console.log(body, '#####');
 
@@ -83,7 +83,7 @@ router.use(async function(req, res, next) {
 					await res.json({
 						status: true,
 						msg: "执行成功",
-						data: 'https://api.youyong.ba/audio.wav',
+						data: 'https://api.youyong.ba/' + req.query.title + '.wav',
 						aaa: '11'
 					})
 				}
