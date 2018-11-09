@@ -57,6 +57,7 @@ var arguments = process.argv.splice(2);
 //////////////////////////
 // print process.argv
 
+console.log(arguments[0], arguments[1]);
 
 
 tts(arguments[0], arguments[1]);
