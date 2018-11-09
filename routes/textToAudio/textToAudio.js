@@ -66,7 +66,7 @@ router.use(async function(req, res, next) {
 			// if (headers["content-type"] == "audio/mpeg") {
 			console.log("成功");
 
-			await fs.writeFile("../../public/audio.wav", body, async function(err) {
+			await fs.writeFile("default.wav", body, async function(err) {
 
 				console.log(body, '#####');
 
