@@ -15,7 +15,7 @@ const Mock = require('mockjs');
 
 router.get('/', bodyParser.json(), function (req, res, next) {
 
-
+    res.header("Access-Control-Allow-Origin", "*"); //设置跨域访问 
     var data = Mock.mock({
         "data|3-10": [{
             cname: "@cname"
