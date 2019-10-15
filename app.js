@@ -29,6 +29,22 @@ var cname = require('./routes/cname');
 var textToAudio = require('./routes/textToAudio/textToAudio');
 
 
+//获取结伴列表
+var list = require('./routes/list');
+
+//插入活动列表
+var insert = require('./routes/insert');
+
+//上传图片
+var uploadimg = require('./routes/uploadimg/uploadimg');
+
+//搜索
+var searchBar = require('./routes/searchBar/searchBar');
+
+
+var accessToken = require('./routes/accessToken');
+
+
 
 let jwt = require('jsonwebtoken');
 var JWT_PASSWORD = 'token';
@@ -61,10 +77,7 @@ app.use('/', routes);
 app.use('/user_profile_list', userProfileList);
 app.use('/user_kpireport_list', userKpireportList);
 app.use('/user_profile_list_open', openData);
-
 app.use('/token', token);
-
-
 app.use('/installUuid', installUuid);
 
 app.use('/updateUuid', updateUuid);
@@ -75,6 +88,25 @@ app.use('/textToAudio', textToAudio);
 
 
 app.use('/cname', cname);
+
+
+
+// 游永吧
+app.use('/list', list);
+app.use('/insert', insert);
+app.use('/uploadimg', uploadimg);
+
+app.use('/searchbar',searchBar);
+app.use('/accessToken',accessToken);
+
+
+
+
+
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
