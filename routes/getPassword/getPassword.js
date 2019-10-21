@@ -46,7 +46,7 @@ const insertPhoneUser = (phone, tempCont, randomNum) => {
 
     console.log(111);
     return new Promise(async function (resolve, reject) {
-        var sql = `INSERT INTO user (id, username, password, avatar, phone) VALUES (NULL, "${Mock.mock('@word(5)')}", "${randomNum}", "${Random.image('100x100', Mock.mock('@color'), '#FFF', 'U')}", ${phone})`;
+        var sql = `INSERT INTO user (id, username, password, avatar, phone) VALUES (NULL, "${Mock.mock('@word(5)')}", "${randomNum}", "${Random.image('100x100', Mock.mock('@color'), '#FFF', Mock.mock('@cword()'))}", ${phone})`;
         console.log(222);
 
         await tempCont.query(`${sql}`, async function (error, rows, fields) {
