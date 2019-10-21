@@ -151,6 +151,19 @@ const queryPhone = (phone, tempCont) => {
 // }
 
 
+const clearPass = (phone, tempCont, randomNum) => {
+    var updataSql = `UPDATE user SET password = '' WHERE phone = ${phone}`;
+
+    tempCont.query(`${updataSql}`, async function (error, rows, fields) {
+
+        // tempCont.release();
+
+
+
+
+    })
+}
+
 router.get('/', bodyParser.json(), function (req, res, next) {
 
     connection.getConnection(async function (error, tempCont) {
@@ -214,6 +227,10 @@ router.get('/', bodyParser.json(), function (req, res, next) {
                         status: true,
                         data: result
                     }
+
+                    setTimeout(function () {
+                        clearPass(params.phone, tempCont, randomNum);
+                    }, 1000 * 120);
                     res.json(data);
                 }, (ex) => {
                     var data = {
