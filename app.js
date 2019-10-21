@@ -44,10 +44,16 @@ var searchBar = require('./routes/searchBar/searchBar');
 
 var accessToken = require('./routes/accessToken');
 
+//获取动态密码(短信验证码)
+var getPassword = require('./routes/getPassword/getPassword');
+
+
 
 
 let jwt = require('jsonwebtoken');
 var JWT_PASSWORD = 'token';
+
+
 
 
 
@@ -96,8 +102,10 @@ app.use('/list', list);
 app.use('/insert', insert);
 app.use('/uploadimg', uploadimg);
 
-app.use('/searchbar',searchBar);
-app.use('/accessToken',accessToken);
+app.use('/searchbar', searchBar);
+app.use('/accessToken', accessToken);
+
+app.use('/getpassword', getPassword);
 
 
 
