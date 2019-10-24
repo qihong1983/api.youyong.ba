@@ -30,7 +30,7 @@ var connection = mysql.createPool({
 
 const queryPhone = (params, tempCont) => {
 	return new Promise(async function (resolve, reject) {
-		var querySql = `select id,username,phone, avatar from user where phone = ${params.phone} and password = ${params.password}`;
+		var querySql = `select id,username,phone,password, avatar from user where phone = ${params.phone} and password = ${params.password}`;
 
 		await tempCont.query(`${querySql}`, async function (error, rows, fields) {
 			tempCont.release();
@@ -59,11 +59,18 @@ const queryPhone = (params, tempCont) => {
 
 					});
 
-
-					data = {
-						status: true,
-						data: obj
+					if (rows[0].password) {
+						
+						data = {
+							status: true,
+							data: obj
+						}
+					} else {
+						data = {
+							status: false
+						}
 					}
+
 				} else {
 					data = {
 						status: false
@@ -88,6 +95,18 @@ const queryPhone = (params, tempCont) => {
 // 	}
 // });
 
+const clearPass = (phone, tempCont) => {
+    var updataSql = `UPDATE user SET password = '' WHERE phone = ${phone}`;
+
+    tempCont.query(`${updataSql}`, async function (error, rows, fields) {
+
+        // tempCont.release();
+
+
+
+
+    })
+}
 
 router.post('/', bodyParser.json(), (req, res) => {
 
@@ -105,6 +124,10 @@ router.post('/', bodyParser.json(), (req, res) => {
 			queryPhone(params, tempCont).then(function (data) {
 
 				console.log(data, 'data');
+
+				setTimeout(function () {
+					clearPass(data.phone, tempCont);
+				}, 1000 * 120);
 
 				if (data.status) {
 
