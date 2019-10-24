@@ -179,8 +179,6 @@ router.get('/', bodyParser.json(), function (req, res, next) {
                 res.json({ "status": false, "msg": "手机号不能为空" });
             }
 
-
-
             var randomNum = ('000000' + Math.floor(Math.random() * 999999)).slice(-6);
 
 
@@ -222,7 +220,7 @@ router.get('/', bodyParser.json(), function (req, res, next) {
                 };
 
                 client.request('SendSms', smsParams, requestOption).then((result) => {
-                    console.log(JSON.stringify(result));
+
                     var data = {
                         status: true,
                         data: result
@@ -246,37 +244,6 @@ router.get('/', bodyParser.json(), function (req, res, next) {
 
 
             })
-
-
-
-
-
-
-            // var client = new Core({
-            //     accessKeyId: 'LTAIML0c4KUngOmA',
-            //     accessKeySecret: 'gbkS2o8UtIVAhs5TovJFHT3SoE2MVX',
-            //     endpoint: 'https://dysmsapi.aliyuncs.com',
-            //     apiVersion: '2017-05-25'
-            // });
-
-            // var smsParams = {
-            //     "RegionId": "cn-hangzhou",
-            //     "PhoneNumbers": params.phone,
-            //     "SignName": "游泳吧",
-            //     "TemplateCode": "SMS_175531301",
-            //     "TemplateParam": `{\"code\": ${randomNum}}`,
-            //     "OutId": "18600190151"
-            // }
-
-            // var requestOption = {
-            //     method: 'POST'
-            // };
-
-            // client.request('SendSms', smsParams, requestOption).then((result) => {
-            //     console.log(JSON.stringify(result));
-            // }, (ex) => {
-            //     console.log(ex);
-            // })
 
         }
     });
