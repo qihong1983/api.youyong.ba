@@ -126,7 +126,7 @@ router.post('/', bodyParser.json(), (req, res) => {
 				console.log(data, 'data');
 
 				setTimeout(function () {
-					clearPass(data.phone, tempCont);
+					clearPass(params.phone, tempCont);
 				}, 1000 * 120);
 
 				if (data.status) {
