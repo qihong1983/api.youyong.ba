@@ -66,7 +66,7 @@ router.post('/', upload.any(), function (req, res, next) {
                 res.json({
                     status: true,
                     msg: 'success',
-                    data: `http://localhost:8081/uploadimg/${req.files[0].originalname}`
+                    data: `https://api.youyong.ba/uploadimg/${req.files[0].originalname}`
                 });
             }
         });
