@@ -25,6 +25,65 @@ var path = require('path');
 
 var upload = multer({ dest: 'upload_tmp/' });
 
+
+const uploadfile = (des_file,req) => {
+    return new Promise(async function (resolve, reject) {
+
+        fs.readFile(req.files[0].path, function (err, data) {
+            console.log(data, '####');
+    
+            fs.writeFile(des_file, data, function (err) {
+    
+    
+                console.log(err, 'errerr');
+    
+                console.log(des_file, 'des_file');
+    
+    
+                if (err) {
+                    // res.json({
+                    //     status: false,
+                    //     msg: err
+                    // })
+
+                    var data = {
+                            status: false,
+                            msg: err
+                        };
+
+                    resolve(data);
+                } else {
+                    response = {
+                        message: 'File uploaded successfully',
+                        filename: req.files[0].originalname
+                    };
+                    console.log(response);
+
+                    var data =  {
+                            status: true,
+                            msg: 'success',
+                            data: `https://api.youyong.ba/uploadimg/${req.files[0].originalname}`
+                        }
+
+                    // res.end(JSON.stringify(response));
+                    // res.json({
+                    //     status: true,
+                    //     msg: 'success',
+                    //     data: `https://api.youyong.ba/uploadimg/${req.files[0].originalname}`
+                    // });
+
+                    resolve(data)
+                }
+            });
+            // res.json({
+            //     status: true,
+            //     msg: 'success'
+            // });
+        });
+
+    });
+}
+
 router.post('/', upload.any(), function (req, res, next) {
     console.log(req, 'reqreq');
     console.log(req.avatar, '上传的文件');  // 上传的文件信息
@@ -40,41 +99,12 @@ router.post('/', upload.any(), function (req, res, next) {
 
     console.log(path.resolve(des_file));
 
-    fs.readFile(req.files[0].path, function (err, data) {
-        console.log(data, '####');
-
-        fs.writeFile(des_file, data, function (err) {
-
-
-            console.log(err, 'errerr');
-
-            console.log(des_file, 'des_file');
+    uploadfile(des_file,req).then (function (data) {
+        res.json(data)
+    })
 
 
-            if (err) {
-                res.json({
-                    status: false,
-                    msg: err
-                })
-            } else {
-                response = {
-                    message: 'File uploaded successfully',
-                    filename: req.files[0].originalname
-                };
-                console.log(response);
-                // res.end(JSON.stringify(response));
-                res.json({
-                    status: true,
-                    msg: 'success',
-                    data: `https://api.youyong.ba/uploadimg/${req.files[0].originalname}`
-                });
-            }
-        });
-        // res.json({
-        //     status: true,
-        //     msg: 'success'
-        // });
-    });
+
 });
 
 
