@@ -26,20 +26,20 @@ var path = require('path');
 var upload = multer({ dest: 'upload_tmp/' });
 
 
-const uploadfile = (des_file,req) => {
+const uploadfile = (des_file, req) => {
     return new Promise(async function (resolve, reject) {
 
-        fs.readFile(req.files[0].path, function (err, data) {
+        await fs.readFile(req.files[0].path, async function (err, data) {
             console.log(data, '####');
-    
-            fs.writeFile(des_file, data, function (err) {
-    
-    
+
+            await fs.writeFile(des_file, data, async function (err) {
+
+
                 console.log(err, 'errerr');
-    
+
                 console.log(des_file, 'des_file');
-    
-    
+
+
                 if (err) {
                     // res.json({
                     //     status: false,
@@ -47,9 +47,9 @@ const uploadfile = (des_file,req) => {
                     // })
 
                     var data = {
-                            status: false,
-                            msg: err
-                        };
+                        status: false,
+                        msg: err
+                    };
 
                     resolve(data);
                 } else {
@@ -59,11 +59,11 @@ const uploadfile = (des_file,req) => {
                     };
                     console.log(response);
 
-                    var data =  {
-                            status: true,
-                            msg: 'success',
-                            data: `https://api.youyong.ba/uploadimg/${req.files[0].originalname}`
-                        }
+                    var data = {
+                        status: true,
+                        msg: 'success',
+                        data: `https://api.youyong.ba/uploadimg/${req.files[0].originalname}`
+                    }
 
                     // res.end(JSON.stringify(response));
                     // res.json({
@@ -99,7 +99,7 @@ router.post('/', upload.any(), function (req, res, next) {
 
     console.log(path.resolve(des_file));
 
-    uploadfile(des_file,req).then (function (data) {
+    uploadfile(des_file, req).then(function (data) {
         res.json(data)
     })
 

@@ -48,6 +48,8 @@ var accessToken = require('./routes/accessToken');
 var getPassword = require('./routes/getPassword/getPassword');
 
 
+//保存用户信息
+var saveUserInfo = require('./routes/saveUserInfo/saveUserInfo');
 
 
 let jwt = require('jsonwebtoken');
@@ -93,6 +95,8 @@ app.use('/queryUuid', queryUuid);
 app.use('/textToAudio', textToAudio);
 
 
+
+
 app.use('/cname', cname);
 
 
@@ -107,7 +111,7 @@ app.use('/accessToken', accessToken);
 
 app.use('/getpassword', getPassword);
 
-
+app.use('/saveUserInfo', saveUserInfo);
 
 
 
