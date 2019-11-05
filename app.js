@@ -52,10 +52,13 @@ var getPassword = require('./routes/getPassword/getPassword');
 var saveUserInfo = require('./routes/saveUserInfo/saveUserInfo');
 
 
+//获取报名列表
+var getBaomingList = require('./routes/getBaomingList/getBaomingList');
+
+var okbaoming = require('./routes/okbaoming/okbaoming');
+
 let jwt = require('jsonwebtoken');
 var JWT_PASSWORD = 'token';
-
-
 
 
 
@@ -113,8 +116,9 @@ app.use('/getpassword', getPassword);
 
 app.use('/saveUserInfo', saveUserInfo);
 
+app.use('/getBaomingList', getBaomingList);
 
-
+app.use('/okbaoming', okbaoming);
 
 
 

@@ -171,8 +171,6 @@ router.get('/', bodyParser.json(), function (req, res, next) {
             tempCont.release();
         } else {
 
-
-
             var params = url.parse(req.url, true).query;
 
             if (!params.phone) {

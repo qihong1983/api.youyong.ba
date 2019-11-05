@@ -15,7 +15,7 @@ var mysql = require('mysql');
 const Mock = require('mockjs');
 
 
-var  url  =  require('url');  
+var url = require('url');
 
 
 var connection = mysql.createPool({
@@ -37,6 +37,38 @@ var connection = mysql.createPool({
 //     }
 // });
 
+
+const sendHuodong = (params, tempCont) => {
+
+    return new Promise(async function (resolve, reject) {
+        var sql = `INSERT INTO youyongba.list (id, userId, endNum, img, isOver, num, price, sendUser, startTime, thumb, title, pinyin) VALUES (NULL, ${params.userId}, '${params.endNum}', '${params.img}', ${params.isOver}, ${params.num}, '${params.price}', '${params.sendUser}', '${params.startTime}', '${params.thumb}', '${params.title}', '${params.pinyin}');`;
+
+        console.log(sql);
+
+        tempCont.query(sql, function (error, rows, fields) {
+
+            console.log('here');
+            tempCont.release();
+
+            var data = {};
+            if (!!error) {
+
+                data = {
+                    status: false,
+                    msg: 'error'
+                }
+                res.json(data);
+            } else {
+                data = {
+                    status: true,
+                    msg: 'success'
+                }
+                resolve(data);
+            }
+        });
+    });
+}
+
 router.get('/', bodyParser.json(), function (req, res, next) {
 
     connection.getConnection(function (error, tempCont) {
@@ -46,15 +78,15 @@ router.get('/', bodyParser.json(), function (req, res, next) {
 
             console.log(req);
 
-            var params = url.parse(req.url,true).query;
+            var params = url.parse(req.url, true).query;
             console.log(params, 'params');
 
             console.log(params.page, 'params.page');
 
 
-            
 
-            
+
+
             //用户id
             params.userId
             //发布主是
@@ -77,8 +109,8 @@ router.get('/', bodyParser.json(), function (req, res, next) {
             params.thumb
             //拼音
             params.pinyin
-            
-            console.log(params.userId,'用户id');
+
+            console.log(params.userId, '用户id');
             console.log(params.title, '发布主题');
             console.log(params.endNum, '结束人数');
             console.log(params.img, '封面图');
@@ -92,32 +124,55 @@ router.get('/', bodyParser.json(), function (req, res, next) {
             console.log(params.thumb, '发布者logo');
             console.log(params.pinyin, '拼音');
 
+            let auth = req.headers.authorization;
+            if (!auth || !auth.startsWith('Bearer')) {
+                return res.status(401).json({
+                    status: false,
+                    msg: -1
+                });
+            } else {
+                auth = auth.split('Bearer').pop().trim();
+            }
 
-
-            var sql = `INSERT INTO youyongba.list (id, userId, endNum, img, isOver, num, price, sendUser, startTime, thumb, title, pinyin) VALUES (NULL, ${params.userId}, '${params.endNum}', '${params.img}', ${params.isOver}, ${params.num}, '${params.price}', '${params.sendUser}', '${params.startTime}', '${params.thumb}', '${params.title}', '${params.pinyin}');`;
-
-            console.log(sql);
-
-            tempCont.query(sql, function (error, rows, fields) {
-
-                console.log('here');
-                tempCont.release();
-
-                if (!!error) {
-                    
-                    var data = {
+            jwt.verify(auth, JWT_PASSWORD, (err, jwtData) => {
+                if (err) {
+                    return res.status(401).json({
                         status: false,
-                        msg: 'error'
-                    }
-                    res.json(data);
+                        msg: -1
+                    })
                 } else {
-                    var data = {
-                        status: true,
-                        msg: 'success'
-                    }
-                    res.json(data);
+                    sendHuodong(params, tempCont).then(function (msg) {
+                        console.log(msg, 'msgmsgmsg');
+                        res.json(msg);
+                    });
+
                 }
             });
+
+            // var sql = `INSERT INTO youyongba.list (id, userId, endNum, img, isOver, num, price, sendUser, startTime, thumb, title, pinyin) VALUES (NULL, ${params.userId}, '${params.endNum}', '${params.img}', ${params.isOver}, ${params.num}, '${params.price}', '${params.sendUser}', '${params.startTime}', '${params.thumb}', '${params.title}', '${params.pinyin}');`;
+
+            // console.log(sql);
+
+            // tempCont.query(sql, function (error, rows, fields) {
+
+            //     console.log('here');
+            //     tempCont.release();
+
+            //     if (!!error) {
+
+            //         var data = {
+            //             status: false,
+            //             msg: 'error'
+            //         }
+            //         res.json(data);
+            //     } else {
+            //         var data = {
+            //             status: true,
+            //             msg: 'success'
+            //         }
+            //         res.json(data);
+            //     }
+            // });
         }
     });
 
