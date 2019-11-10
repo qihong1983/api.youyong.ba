@@ -376,6 +376,7 @@ router.post('/', bodyParser.json(), function (req, res, next) {
 
 
             }).then(function (msg) {
+                console.log(msg, "看看有没有数据");
                 if (msg.status) {
                     //update
 
