@@ -202,6 +202,8 @@ router.post('/', bodyParser.json(), function (req, res, next) {
                         //     status: false,
                         //     msg: -1
                         // })
+
+                        console.log(err, '看看jwt返没返回错误');
                     } else {
                         // baomingInfo(params.id, tempCont).then(function (msg) {
                         //     res.json(msg);
