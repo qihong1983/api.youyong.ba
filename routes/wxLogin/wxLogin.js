@@ -165,12 +165,167 @@ const getUserInfo = (access_token, openid) => {
     })
 }
 
+
+const saveWxUserInfo = (data) => {
+    return new Promise(async function (resolve, reject) {
+
+        var querySql = `select unionid from user where unionid = ${data.unionid}`;
+
+        await tempCont.query(`${querySql}`, async function (error, rows, fields) {
+            tempCont.release();
+
+            var data = null;
+            if (!!error) {
+                data = {
+                    status: false
+                }
+            } else {
+                console.log(rows);
+                if (rows.length != 0) {
+                    data = {
+                        status: true,
+                        data: data
+                    }
+                } else {
+                    data = {
+                        status: false,
+                        data: data
+                    }
+                }
+
+            }
+            resolve(data);
+
+
+        });
+    })
+}
+
+
+
+const selectWxUserInfo = (data) => {
+    return new Promise(async function (resolve, reject) {
+
+        var querySql = `select id,avatar, username,unionid from user where unionid = ${data.unionid}`;
+
+        // avatar: "https://api.youyong.ba/uploadimg/1113.png"
+        // id: 17
+        // phone: "18600190151"
+        // token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6IjE4NjAwMTkwMTUxIiwiaWF0IjoxNTczMzk2ODI5LCJleHAiOjE1NzMzOTg2Mjl9.fqHddI9L5VBnEr4mkku_oatYAeiqzH0rcmwr_EeGuxo"
+        // username: "1111"
+
+        await tempCont.query(`${querySql}`, async function (error, rows, fields) {
+            // tempCont.release();
+
+            var data = null;
+            if (!!error) {
+                data = {
+                    status: false
+                }
+            } else {
+                console.log(rows);
+                if (rows.length != 0) {
+                    data = {
+                        status: true,
+                        data: rows[0]
+                    }
+                } else {
+                    data = {
+                        status: false,
+                        data: data[0]
+                    }
+                }
+
+            }
+            resolve(data);
+
+
+        });
+    })
+}
+
+
+const updateWxUserInfo = (data, tempCont) => {
+    return new Promise(async function (resolve, reject) {
+        // var updataSql = `UPDATE user SET password = ${randomNum},  WHERE unionid = ${data.unionid}`;
+
+        // await tempCont.query(`${updataSql}`, async function (error, rows, fields) {
+
+        //     // tempCont.release();
+
+        //     if (!!error) {
+        //         var data = {
+        //             status: false
+        //         }
+        //     } else {
+        //         var data = {
+        //             status: true
+        //         }
+        //         resolve(data);
+
+        //     }
+
+
+        // })
+
+
+    })
+}
+
+
+const insertWxUserInfo = (data, tempCont) => {
+    return new Promise(async function (resolve, reject) {
+        var sql = `INSERT INTO user (id, username, avatar, unionid) VALUES (NULL, "${data.nickname}", "${data.headimgurl}", "${data.unionid}")`;
+        console.log(222);
+
+
+        // openid: 'oarz45uz5JJtr5pF0p004IGIpRnM',
+        // nickname: '小洪',
+        // sex: 1,
+        // language: 'zh_CN',
+        // city: 'East',
+        // province: 'Beijing',
+        // country: 'CN',
+        // headimgurl: 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTISxADAWm95lxDjCe4b9gucNP4LdZ6CbBGicsH48KaRpzzqSdiaHFryKcz5E1W1ibrKf2dFx6BhFD9OQ/132',
+        // privilege: [],
+        // unionid: 'ovIaC0d8U6GMlCA32qBkPSfLctAw'
+
+
+        await tempCont.query(`${sql}`, async function (error, rows, fields) {
+
+            console.log(rows, 'rowsrowsrows');
+
+            console.log(333);
+            var data = null;
+            if (!!error) {
+                console.log(error, 'error');
+
+                data = {
+                    status: false,
+                    data: data
+                }
+            } else {
+                console.log(555);
+                data = {
+                    status: true,
+                    data: data
+                }
+            }
+
+
+
+            resolve(data);
+
+        });
+    })
+}
+
+
 router.post('/', bodyParser.json(), function (req, res, next) {
     connection.getConnection(async function (error, tempCont) {
         if (!!error) {
             tempCont.release();
         } else {
-
 
             console.log(req.body, 'req.bodyreq.bodyreq.body');
 
@@ -184,27 +339,6 @@ router.post('/', bodyParser.json(), function (req, res, next) {
 
             getAccessToken(data, tempCont).then(function (msg) {
 
-
-                jwt.verify(msg.data.access_token, JWT_PASSWORD, (err, jwtData) => {
-                    // jwt.verify(auth, JWT_PASSWORD, (err, jwtData) => {
-                    if (err) {
-                        // return res.status(401).json({
-                        //     status: false,
-                        //     msg: -1
-                        // })
-
-                        console.log(err, '看看jwt返没返回错误');
-                    } else {
-                        // baomingInfo(params.id, tempCont).then(function (msg) {
-                        //     res.json(msg);
-                        // });
-
-                        console.log(jwtData, '如果能能成功');
-
-                    }
-                });
-
-                console.log(msg.data);
                 if (msg.status) {
 
                     // msg.data.access_token
@@ -219,9 +353,18 @@ router.post('/', bodyParser.json(), function (req, res, next) {
                 console.log(msg.data.access_token, 'msg.data.access_tokenmsg.data.access_token');
 
 
-
                 if (msg.status) {
                     console.log('登录成功');
+
+
+                    return saveWxUserInfo(msg.data);
+
+
+
+
+                    // res.json({
+                    //     status: true
+                    // })
 
                 } else {
                     console.log('登录失败');
@@ -232,6 +375,44 @@ router.post('/', bodyParser.json(), function (req, res, next) {
                 }
 
 
+            }).then(function (msg) {
+                if (msg.status) {
+                    //update
+
+                    // updateWxUserInfo(msg.data, tempCont);
+
+                    // selectWxUserInfo(msg.data, tempCont);
+
+                    //返回数据
+                    res.json(msg);
+                    // res.json({
+                    //     status: true
+                    // })
+                } else {
+
+                    //insert
+                    insertWxUserInfo(msg.data, tempCont);
+
+                    // res.json({
+                    //     status: true
+                    // })
+                }
+            }).then(function (msg) {
+                if (msg.status) {
+
+                    res.json(msg);
+
+                    // res.json({
+                    //     status: true,
+                    //     data: {
+                    // avatar: "https://api.youyong.ba/uploadimg/1113.png"
+                    // id: 17
+                    // phone: "18600190151"
+                    // token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6IjE4NjAwMTkwMTUxIiwiaWF0IjoxNTczMzk2ODI5LCJleHAiOjE1NzMzOTg2Mjl9.fqHddI9L5VBnEr4mkku_oatYAeiqzH0rcmwr_EeGuxo"
+                    // username: "1111"
+                    //     }
+                    // })
+                }
             });
 
         }
