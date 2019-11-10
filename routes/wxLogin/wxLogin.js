@@ -257,32 +257,7 @@ const selectWxUserInfo = (data, tempCont) => {
 }
 
 
-const updateWxUserInfo = (data, tempCont) => {
-    return new Promise(async function (resolve, reject) {
-        // var updataSql = `UPDATE user SET password = ${randomNum},  WHERE unionid = ${data.unionid}`;
 
-        // await tempCont.query(`${updataSql}`, async function (error, rows, fields) {
-
-        //     // tempCont.release();
-
-        //     if (!!error) {
-        //         var data = {
-        //             status: false
-        //         }
-        //     } else {
-        //         var data = {
-        //             status: true
-        //         }
-        //         resolve(data);
-
-        //     }
-
-
-        // })
-
-
-    })
-}
 
 
 const insertWxUserInfo = (data, tempCont) => {
