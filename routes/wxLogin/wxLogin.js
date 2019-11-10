@@ -398,6 +398,7 @@ router.post('/', bodyParser.json(), function (req, res, next) {
                     // })
                 }
             }).then(function (msg) {
+                console.log(msg, '看看最终返回的是什么');
                 if (msg.status) {
 
                     res.json(msg);
