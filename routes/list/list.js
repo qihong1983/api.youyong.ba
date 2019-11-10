@@ -15,7 +15,7 @@ var mysql = require('mysql');
 const Mock = require('mockjs');
 
 
-var  url  =  require('url');  
+var url = require('url');
 
 
 var connection = mysql.createPool({
@@ -46,12 +46,12 @@ router.get('/', bodyParser.json(), function (req, res, next) {
 
             console.log(req);
 
-            var params = url.parse(req.url,true).query;
+            var params = url.parse(req.url, true).query;
             console.log(params, 'params');
 
             console.log(params.page, 'params.page');
 
-            var sql = `select * from list limit ${params.page}, 10`;
+            var sql = `select * from list limit ${params.page}, 8`;
 
             console.log(sql);
 
