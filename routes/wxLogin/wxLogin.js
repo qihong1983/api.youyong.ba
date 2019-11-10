@@ -118,7 +118,7 @@ const getAccessToken = (data, tempCont) => {
         var json = await res.json();
 
         console.log(22222);
-        console.log(msg, 'getAccessToken');
+        console.log(json, 'getAccessToken');
 
 
         var returnData = {};
