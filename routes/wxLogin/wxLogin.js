@@ -167,7 +167,7 @@ router.post('/', bodyParser.json(), function (req, res, next) {
         } else {
 
 
-            // console.log(req.body, 'req.bodyreq.bodyreq.body');
+            console.log(req.body, 'req.bodyreq.bodyreq.body');
 
             // console.log(fetch, '看看是什么');
 
