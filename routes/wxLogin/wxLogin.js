@@ -166,7 +166,7 @@ const getUserInfo = (access_token, openid) => {
 }
 
 
-const saveWxUserInfo = (data) => {
+const saveWxUserInfo = (data, tempCont) => {
     return new Promise(async function (resolve, reject) {
 
         var querySql = `select unionid from user where unionid = ${data.unionid}`;
@@ -362,7 +362,7 @@ router.post('/', bodyParser.json(), function (req, res, next) {
                     console.log('登录成功');
 
 
-                    return saveWxUserInfo(msg.data);
+                    return saveWxUserInfo(msg.data, tempCont);
 
 
 
