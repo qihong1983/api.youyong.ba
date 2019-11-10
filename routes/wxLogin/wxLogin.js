@@ -109,6 +109,22 @@ router.post('/', bodyParser.json(), function (req, res, next) {
 
             console.log(fetch, '看看是什么');
 
+            //https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code
+
+            let res = await fetch(`https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxdbb117c79cfbdea7&secret=c5253dbce83f03b45bb2eb3ba8f2d1c4&code=${req.body.code}&grant_type=authorization_code`, {
+                // let res = await fetch(`http://localhost:8081/list?page=${data.offset - 1}&keyword=${encodeURI(data.keyword)}`, {
+                method: 'GET',
+                headers: {
+                    'Cache-Control': 'no-cache',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+
+            });
+
+            let json = await res.json();
+
+            console.log(json, '看看成没成功');
+
 
         }
     })
