@@ -218,9 +218,11 @@ const selectWxUserInfo = (data, tempCont) => {
         // token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6IjE4NjAwMTkwMTUxIiwiaWF0IjoxNTczMzk2ODI5LCJleHAiOjE1NzMzOTg2Mjl9.fqHddI9L5VBnEr4mkku_oatYAeiqzH0rcmwr_EeGuxo"
         // username: "1111"
 
+        console.log(11111);
         await tempCont.query(`${querySql}`, async function (error, rows, fields) {
             // tempCont.release();
 
+            console.log(222222);
             var returnData = null;
             if (!!error) {
                 returnData = {
@@ -240,6 +242,8 @@ const selectWxUserInfo = (data, tempCont) => {
                     }
                 }
 
+
+                console.log(returnData, '33333');
             }
             resolve(returnData);
 
