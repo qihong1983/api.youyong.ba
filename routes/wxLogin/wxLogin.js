@@ -1,3 +1,4 @@
+import 'isomorphic-unfetch';
 var express = require('express');
 var router = express.Router();
 var cookieParser = require('cookie-parser');
@@ -102,7 +103,13 @@ router.post('/', bodyParser.json(), function (req, res, next) {
         if (!!error) {
             tempCont.release();
         } else {
+
+
             console.log(req.body, 'req.bodyreq.bodyreq.body');
+
+
+
+
         }
     })
 });
