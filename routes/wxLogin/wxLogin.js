@@ -195,7 +195,7 @@ router.post('/', bodyParser.json(), function (req, res, next) {
             }).then(function (msg) {
                 console.log(msg, 'msgsmsgmsgmsgmsgmsgmsgmsg');
 
-                jwt.verify(auth, msg.data.access_token, (err, jwtData) => {
+                jwt.verify(msg.data.access_token, JWT_PASSWORD, (err, jwtData) => {
                     // jwt.verify(auth, JWT_PASSWORD, (err, jwtData) => {
                     if (err) {
                         // return res.status(401).json({
