@@ -300,17 +300,17 @@ const insertWxUserInfo = (data, tempCont) => {
             console.log(rows, 'rowsrowsrows');
 
             console.log(333);
-            var data = null;
+            var returnData = null;
             if (!!error) {
                 console.log(error, 'error');
 
-                data = {
+                returnData = {
                     status: false,
                     data: data
                 }
             } else {
                 console.log(555);
-                data = {
+                returnData = {
                     status: true,
                     data: data
                 }
@@ -318,7 +318,7 @@ const insertWxUserInfo = (data, tempCont) => {
 
 
 
-            resolve(data);
+            resolve(returnData);
 
         });
     })
