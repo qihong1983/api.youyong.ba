@@ -436,6 +436,8 @@ router.post('/', bodyParser.json(), function (req, res, next) {
                         expiresIn: 60 * 30
                         // expiresIn: '30 seconds'
                     })
+
+                    delete msg.data.unionid;
                     res.status(200).json(msg);
                 } else {
                     status: false
