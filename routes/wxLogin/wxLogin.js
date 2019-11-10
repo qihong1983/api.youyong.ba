@@ -1,4 +1,4 @@
-import 'isomorphic-unfetch';
+require('isomorphic-unfetch');
 var express = require('express');
 var router = express.Router();
 var cookieParser = require('cookie-parser');
