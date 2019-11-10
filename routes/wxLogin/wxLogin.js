@@ -193,14 +193,38 @@ router.post('/', bodyParser.json(), function (req, res, next) {
                 }
 
             }).then(function (msg) {
-
                 console.log(msg, 'msgsmsgmsgmsgmsgmsgmsgmsg');
+
+                jwt.verify(auth, msg.data.access_token, (err, jwtData) => {
+                    // jwt.verify(auth, JWT_PASSWORD, (err, jwtData) => {
+                    if (err) {
+                        // return res.status(401).json({
+                        //     status: false,
+                        //     msg: -1
+                        // })
+                    } else {
+                        // baomingInfo(params.id, tempCont).then(function (msg) {
+                        //     res.json(msg);
+                        // });
+
+                        console.log(jwtData, '如果能能成功');
+
+                    }
+                });
+
+                if (msg.status) {
+                    console.log('登录成功');
+
+                } else {
+                    console.log('登录失败');
+                    res.json({
+                        status: false,
+                        msg: '登录失败'
+                    });
+                }
+
+
             });
-
-
-
-
-
 
         }
     })
