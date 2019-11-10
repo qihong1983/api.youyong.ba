@@ -341,6 +341,12 @@ router.post('/', bodyParser.json(), function (req, res, next) {
                     //https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID
 
                     return getUserInfo(msg.data.access_token, msg.data.openid);
+                } else {
+                    res.json({
+                        status: false,
+                        msg: "登录失败"
+
+                    });
                 }
 
             }).then(function (msg) {
