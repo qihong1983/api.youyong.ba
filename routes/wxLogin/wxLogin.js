@@ -171,6 +171,8 @@ const saveWxUserInfo = (data) => {
 
         var querySql = `select unionid from user where unionid = ${data.unionid}`;
 
+
+        console.log(data, '---saveWxUserInfo---');
         await tempCont.query(`${querySql}`, async function (error, rows, fields) {
             tempCont.release();
 
