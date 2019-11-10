@@ -210,7 +210,7 @@ const saveWxUserInfo = (data, tempCont) => {
 const selectWxUserInfo = (data, tempCont) => {
     return new Promise(async function (resolve, reject) {
 
-        var querySql = `select id,avatar, username,unionid from user where unionid = ${data.unionid}`;
+        var querySql = `select id,avatar, username,unionid from user where unionid = "${data.unionid}"`;
 
         // avatar: "https://api.youyong.ba/uploadimg/1113.png"
         // id: 17
@@ -218,8 +218,12 @@ const selectWxUserInfo = (data, tempCont) => {
         // token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6IjE4NjAwMTkwMTUxIiwiaWF0IjoxNTczMzk2ODI5LCJleHAiOjE1NzMzOTg2Mjl9.fqHddI9L5VBnEr4mkku_oatYAeiqzH0rcmwr_EeGuxo"
         // username: "1111"
 
+
         console.log(44444444);
         await tempCont.query(`${querySql}`, async function (error, rows, fields) {
+
+            console.log(error, "-----error ----");
+            console.log(rows, "rows");
             // tempCont.release();
 
             console.log(5555555);
