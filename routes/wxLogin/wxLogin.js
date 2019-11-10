@@ -177,7 +177,7 @@ const saveWxUserInfo = (data) => {
             tempCont.release();
 
 
-
+            console.log(error, '----error-----');
             console.log(rows, 'rowsrowsrwos');
             var data = null;
             if (!!error) {
