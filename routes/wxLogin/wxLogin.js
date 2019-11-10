@@ -174,6 +174,9 @@ const saveWxUserInfo = (data) => {
         await tempCont.query(`${querySql}`, async function (error, rows, fields) {
             tempCont.release();
 
+
+
+            console.log(rows, 'rowsrowsrwos');
             var data = null;
             if (!!error) {
                 data = {
