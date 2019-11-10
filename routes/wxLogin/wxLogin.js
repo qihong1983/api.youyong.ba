@@ -210,7 +210,7 @@ const saveWxUserInfo = (data, tempCont) => {
 const selectWxUserInfo = (data, tempCont) => {
     return new Promise(async function (resolve, reject) {
 
-        var querySql = `select id,avatar, username,unionid from user where unionid = "${data.unionid}"`;
+        var querySql = `select id,avatar, username from user where unionid = "${data.unionid}"`;
 
         // avatar: "https://api.youyong.ba/uploadimg/1113.png"
         // id: 17
