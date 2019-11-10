@@ -395,7 +395,7 @@ router.post('/', bodyParser.json(), function (req, res, next) {
                 } else {
 
                     //insert
-                    insertWxUserInfo(msg.data, tempCont);
+                    return insertWxUserInfo(msg.data, tempCont);
 
                     // res.json({
                     //     status: true
