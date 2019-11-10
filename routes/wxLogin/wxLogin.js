@@ -180,7 +180,8 @@ const saveWxUserInfo = (data, tempCont) => {
             var returnData = null;
             if (!!error) {
                 returnData = {
-                    status: false
+                    status: false,
+                    data: data
                 }
             } else {
 
@@ -197,7 +198,7 @@ const saveWxUserInfo = (data, tempCont) => {
                 }
 
             }
-            resolve(data);
+            resolve(returnData);
 
 
         });
