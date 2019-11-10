@@ -423,6 +423,8 @@ router.post('/', bodyParser.json(), function (req, res, next) {
                 }
             }).then(function (msg) {
                 console.log(msg, '----这个是最终返回');
+
+                res.json(msg);
             });
 
         }
