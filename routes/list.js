@@ -67,15 +67,15 @@ router.get('/', bodyParser.json(), function (req, res, next) {
                 lang = 'en';
             if (params.keyword != '') {
                 if (lang == 'cn') {
-                    var sql = `select * from list where title like '%${params.keyword}%' order by id desc limit ${params.page * 10}, 10`;
+                    var sql = `select * from list where title like '%${params.keyword}%' order by id desc limit ${params.page * 8}, 8`;
                     var count = `select count(*) as count from list where title like '%${params.keyword}%'`;
                 } else {
-                    var sql = `select * from list where pinyin like '%${params.keyword}%' order by id desc limit ${params.page * 10}, 10`;
+                    var sql = `select * from list where pinyin like '%${params.keyword}%' order by id desc limit ${params.page * 8}, 8`;
                     var count = `select count(*) as count from list where pinyin like '%${params.keyword}%'`;
                 }
-                
+
             } else {
-                var sql = `select * from list order by id desc limit ${params.page * 10}, 10`;
+                var sql = `select * from list order by id desc limit ${params.page * 8}, 8`;
                 var count = `select count(*) as count from list`;
 
             }
