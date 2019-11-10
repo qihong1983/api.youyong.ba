@@ -113,6 +113,9 @@ const getAccessToken = (data, tempCont) => {
 
         var json = await res.json();
 
+        console.log(msg, 'getAccessToken');
+
+
         var returnData = {};
         if (json.errcode) {
             returnData.status = false;
@@ -142,7 +145,7 @@ const getUserInfo = (access_token, openid) => {
 
         var json = await res.json();
 
-        console.log(json);
+        console.log(json, 'getUserInfo');
 
         var data = {};
         if (json.errcode) {
@@ -175,7 +178,6 @@ router.post('/', bodyParser.json(), function (req, res, next) {
             }
 
             getAccessToken(data, tempCont).then(function (msg) {
-                // console.log(msg);
 
                 if (msg.status) {
                     console.log(msg.data);
@@ -186,6 +188,7 @@ router.post('/', bodyParser.json(), function (req, res, next) {
                 }
 
             }).then(function (msg) {
+
                 console.log(msg, 'msgsmsgmsgmsgmsgmsgmsgmsg');
             });
 
