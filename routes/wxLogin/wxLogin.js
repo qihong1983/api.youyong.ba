@@ -113,9 +113,11 @@ const getAccessToken = (data, tempCont) => {
 
         });
 
+        console.log(11111);
 
         var json = await res.json();
 
+        console.log(22222);
         console.log(msg, 'getAccessToken');
 
 
