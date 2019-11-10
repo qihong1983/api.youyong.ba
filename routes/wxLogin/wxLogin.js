@@ -142,7 +142,7 @@ const getUserInfo = (access_token, openid) => {
 
         var json = await res.json();
 
-
+        console.log(json);
 
         var data = {};
         if (json.errcode) {
