@@ -172,27 +172,25 @@ const saveWxUserInfo = (data, tempCont) => {
         var querySql = `select unionid from user where unionid = "${data.unionid}"`;
 
 
-        console.log(data, '---saveWxUserInfo---');
         await tempCont.query(`${querySql}`, async function (error, rows, fields) {
             tempCont.release();
 
 
-            console.log(error, '----error-----');
-            console.log(rows, 'rowsrowsrwos');
-            var data = null;
+
+            var returnData = null;
             if (!!error) {
-                data = {
+                returnData = {
                     status: false
                 }
             } else {
-                console.log(rows);
+
                 if (rows.length != 0) {
-                    data = {
+                    returnData = {
                         status: true,
                         data: data
                     }
                 } else {
-                    data = {
+                    returnData = {
                         status: false,
                         data: data
                     }
