@@ -218,11 +218,11 @@ const selectWxUserInfo = (data, tempCont) => {
         // token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6IjE4NjAwMTkwMTUxIiwiaWF0IjoxNTczMzk2ODI5LCJleHAiOjE1NzMzOTg2Mjl9.fqHddI9L5VBnEr4mkku_oatYAeiqzH0rcmwr_EeGuxo"
         // username: "1111"
 
-        console.log(11111);
+        console.log(44444444);
         await tempCont.query(`${querySql}`, async function (error, rows, fields) {
             // tempCont.release();
 
-            console.log(222222);
+            console.log(5555555);
             var returnData = null;
             if (!!error) {
                 returnData = {
@@ -243,7 +243,7 @@ const selectWxUserInfo = (data, tempCont) => {
                 }
 
 
-                console.log(returnData, '33333');
+                console.log(returnData, '66666666');
             }
             resolve(returnData);
 
@@ -393,7 +393,11 @@ router.post('/', bodyParser.json(), function (req, res, next) {
                     // selectWxUserInfo(msg.data, tempCont);
 
                     //返回数据
-                    res.json(msg);
+                    // res.json(msg);
+
+                    return selectWxUserInfo(msg.data, tempCont);
+
+
                     // res.json({
                     //     status: true
                     // })
@@ -411,7 +415,7 @@ router.post('/', bodyParser.json(), function (req, res, next) {
                 if (msg.status) {
 
 
-                    return selectWxUserInfo(data, tempCont);
+                    return selectWxUserInfo(msg.data, tempCont);
 
                     //xxxx
 
