@@ -169,7 +169,7 @@ const getUserInfo = (access_token, openid) => {
 const saveWxUserInfo = (data, tempCont) => {
     return new Promise(async function (resolve, reject) {
 
-        var querySql = `select unionid from user where unionid = ${data.unionid}`;
+        var querySql = `select unionid from user where unionid = "${data.unionid}"`;
 
 
         console.log(data, '---saveWxUserInfo---');
