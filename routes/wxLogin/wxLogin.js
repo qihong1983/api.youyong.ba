@@ -113,6 +113,7 @@ const getAccessToken = (data, tempCont) => {
 
         });
 
+
         var json = await res.json();
 
         console.log(msg, 'getAccessToken');
@@ -175,7 +176,7 @@ router.post('/', bodyParser.json(), function (req, res, next) {
 
 
             var data = {
-                code: req.body.state,
+                code: req.body.code,
                 state: req.body.state
             }
 
