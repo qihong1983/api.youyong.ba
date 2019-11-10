@@ -333,6 +333,15 @@ const insertWxUserInfo = (data, tempCont) => {
 }
 
 
+const updateWxUserInfo = (data, tempCont) => {
+    return new Promise(async function (resolve, reject) {
+        resolve({
+            status: true,
+            data: data
+        });
+    })
+}
+
 router.post('/', bodyParser.json(), function (req, res, next) {
     connection.getConnection(async function (error, tempCont) {
         if (!!error) {
@@ -392,14 +401,14 @@ router.post('/', bodyParser.json(), function (req, res, next) {
                 if (msg.status) {
                     //update
 
-                    // updateWxUserInfo(msg.data, tempCont);
+                    // return updateWxUserInfo(msg.data, tempCont);
 
                     // selectWxUserInfo(msg.data, tempCont);
 
                     //返回数据
                     // res.json(msg);
 
-                    return selectWxUserInfo(msg.data, tempCont);
+                    return updateWxUserInfo(msg.data, tempCont);
 
 
                     // res.json({
