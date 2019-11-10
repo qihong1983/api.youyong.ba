@@ -178,9 +178,9 @@ router.post('/', bodyParser.json(), function (req, res, next) {
             }
 
             getAccessToken(data, tempCont).then(function (msg) {
-
+                console.log(msg.data);
                 if (msg.status) {
-                    console.log(msg.data);
+
                     // msg.data.access_token
                     //https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID
 
