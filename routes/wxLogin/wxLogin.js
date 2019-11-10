@@ -207,7 +207,7 @@ const saveWxUserInfo = (data, tempCont) => {
 
 
 
-const selectWxUserInfo = (data) => {
+const selectWxUserInfo = (data, tempCont) => {
     return new Promise(async function (resolve, reject) {
 
         var querySql = `select id,avatar, username,unionid from user where unionid = ${data.unionid}`;
@@ -221,27 +221,27 @@ const selectWxUserInfo = (data) => {
         await tempCont.query(`${querySql}`, async function (error, rows, fields) {
             // tempCont.release();
 
-            var data = null;
+            var returnData = null;
             if (!!error) {
-                data = {
+                returnData = {
                     status: false
                 }
             } else {
                 console.log(rows);
                 if (rows.length != 0) {
-                    data = {
+                    returnData = {
                         status: true,
                         data: rows[0]
                     }
                 } else {
-                    data = {
+                    returnData = {
                         status: false,
                         data: data[0]
                     }
                 }
 
             }
-            resolve(data);
+            resolve(returnData);
 
 
         });
@@ -406,7 +406,13 @@ router.post('/', bodyParser.json(), function (req, res, next) {
                 console.log(msg, '看看最终返回的是什么');
                 if (msg.status) {
 
-                    res.json(msg);
+
+                    return selectWxUserInfo(data, tempCont);
+
+                    //xxxx
+
+
+                    // res.json(msg);
 
                     // res.json({
                     //     status: true,
@@ -419,6 +425,8 @@ router.post('/', bodyParser.json(), function (req, res, next) {
                     //     }
                     // })
                 }
+            }).then(function (msg) {
+                console.log(msg, '----这个是最终返回');
             });
 
         }
