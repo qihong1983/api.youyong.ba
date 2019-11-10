@@ -183,19 +183,7 @@ router.post('/', bodyParser.json(), function (req, res, next) {
             }
 
             getAccessToken(data, tempCont).then(function (msg) {
-                console.log(msg.data);
-                if (msg.status) {
 
-                    // msg.data.access_token
-                    //https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID
-
-                    return getUserInfo(msg.data.access_token, msg.data.openid);
-                }
-
-            }).then(function (msg) {
-                console.log(msg, 'msgsmsgmsgmsgmsgmsgmsgmsg');
-
-                console.log(msg.data.access_token, 'msg.data.access_tokenmsg.data.access_token');
 
                 jwt.verify(msg.data.access_token, JWT_PASSWORD, (err, jwtData) => {
                     // jwt.verify(auth, JWT_PASSWORD, (err, jwtData) => {
@@ -215,6 +203,22 @@ router.post('/', bodyParser.json(), function (req, res, next) {
 
                     }
                 });
+
+                console.log(msg.data);
+                if (msg.status) {
+
+                    // msg.data.access_token
+                    //https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID
+
+                    return getUserInfo(msg.data.access_token, msg.data.openid);
+                }
+
+            }).then(function (msg) {
+                console.log(msg, 'msgsmsgmsgmsgmsgmsgmsgmsg');
+
+                console.log(msg.data.access_token, 'msg.data.access_tokenmsg.data.access_token');
+
+
 
                 if (msg.status) {
                     console.log('登录成功');
