@@ -77,9 +77,37 @@ const insertPhoneUser = (phone, tempCont, randomNum) => {
  * 如果查询到就更新密码
  */
 
-const updateUserInfo = (data,phone,tempCont) => {
+const updateUserInfo = (data, phone, tempCont) => {
     return new Promise(async function (resolve, reject) {
         var updataSql = `UPDATE user SET username = "${data.username}", avatar = "${data.avatar}" WHERE phone = ${phone}`;
+
+        await tempCont.query(`${updataSql}`, async function (error, rows, fields) {
+
+            // tempCont.release();
+
+            console.log(error, 'error');
+            console.log(rows, 'rows');
+            if (!!error) {
+                var data = {
+                    status: false
+                }
+            } else {
+                var data = {
+                    status: true
+                }
+                resolve(data);
+
+            }
+
+
+        })
+    })
+}
+
+
+const updateUserInfoUnionid = (data, unionid, tempCont) => {
+    return new Promise(async function (resolve, reject) {
+        var updataSql = `UPDATE user SET username = "${data.username}", avatar = "${data.avatar}" WHERE unionid = "${unionid}"`;
 
         await tempCont.query(`${updataSql}`, async function (error, rows, fields) {
 
@@ -178,7 +206,7 @@ router.post('/', bodyParser.json(), function (req, res, next) {
             var data = req.body;
 
             let auth = req.headers.authorization;
-            
+
             if (!auth || !auth.startsWith('Bearer')) {
                 return res.status(401).json({
                     status: false,
@@ -198,23 +226,32 @@ router.post('/', bodyParser.json(), function (req, res, next) {
                     })
                 } else {
                     console.log(jwtData, 'jwtDatajwtData');
+                    if (jwtData.unionid) {
+                        updateUserInfoUnionid(data, jwtData.unionid, tempCont).then(function (msg) {
+                            res.json(msg);
+                            setTimeout(function () {
+                                clearPass(jwtData.phone, tempCont);
+                            }, 1000 * 120);
+                        })
+                    } else {
+                        updateUserInfo(data, jwtData.phone, tempCont).then(function (msg) {
+                            res.json(msg);
+                            setTimeout(function () {
+                                clearPass(jwtData.phone, tempCont);
+                            }, 1000 * 120);
+                        })
+                    }
 
-                    updateUserInfo(data,jwtData.phone,tempCont).then(function (msg) {
-                        res.json(msg);
-                        setTimeout(function () {
-                            clearPass(jwtData.phone, tempCont);
-                        }, 1000 * 120);
-                    })
                 }
-        
-        
-        
+
+
+
             });
 
 
 
-           
-            
+
+
             // var params = url.parse(req.url, true).query;
 
             // if (!params.phone) {
@@ -226,7 +263,7 @@ router.post('/', bodyParser.json(), function (req, res, next) {
 
 
 
-            
+
 
         }
     });
