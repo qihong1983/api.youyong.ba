@@ -57,7 +57,7 @@ const sendHuodong = (params, tempCont) => {
                     status: false,
                     msg: 'error'
                 }
-                res.json(data);
+                // res.json(data);
             } else {
                 data = {
                     status: true,
