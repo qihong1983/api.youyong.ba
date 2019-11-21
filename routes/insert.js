@@ -78,7 +78,7 @@ router.use(function (req, res, next) {
 router.get('/', bodyParser.json(), function (req, res, next) {
 
 
-
+    res.set({ 'Access-Control-Allow-Origin': '*' })
     connection.getConnection(function (error, tempCont) {
         if (!!error) {
             tempCont.release();
