@@ -197,7 +197,11 @@ const clearPass = (phone, tempCont) => {
 router.post('/', bodyParser.json(), function (req, res, next) {
     console.log(11111);
     connection.getConnection(async function (error, tempCont) {
+        tempCont.release();
+        console.log(222);
         if (!!error) {
+            console.log(3333);
+            console.log(error);
             tempCont.release();
         } else {
 
