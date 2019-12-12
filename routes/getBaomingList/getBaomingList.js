@@ -57,7 +57,7 @@ router.get('/', bodyParser.json(), function (req, res, next) {
 
 
     connection.getConnection(async function (error, tempCont) {
-        tempCont.release();
+        // tempCont.release();
         if (!!error) {
             tempCont.release();
         } else {
