@@ -13,12 +13,20 @@ const Mock = require('mockjs');
 var Random = Mock.Random;
 var url = require('url');
 
+// var connection = mysql.createPool({
+//     host: '39.106.140.80',
+//     user: 'root',
+//     password: 'Qihong38752673',
+//     database: 'youyongba',
+//     multipleStatements: true
+// });
+
+
 var connection = mysql.createPool({
     host: '39.106.140.80',
     user: 'root',
     password: 'Qihong38752673',
-    database: 'youyongba',
-    multipleStatements: true
+    database: 'youyongba'
 });
 
 
@@ -57,7 +65,9 @@ router.get('/', bodyParser.json(), function (req, res, next) {
 
 
     connection.getConnection(async function (error, tempCont) {
-        // tempCont.release();
+        tempCont.release();
+
+
         if (!!error) {
             tempCont.release();
         } else {
