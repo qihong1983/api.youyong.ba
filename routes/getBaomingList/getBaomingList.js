@@ -71,29 +71,38 @@ router.get('/', bodyParser.json(), function (req, res, next) {
         if (!!error) {
             tempCont.release();
         } else {
-
+            console.log(1111);
             var params = url.parse(req.url, true).query;
 
             let auth = req.headers.authorization;
 
             if (!auth || !auth.startsWith('Bearer')) {
+
+                console.log(22222);
                 return res.status(401).json({
                     status: false,
                     msg: -1
                 });
             } else {
+                console.log(333333);
                 auth = auth.split('Bearer').pop().trim();
             }
 
             jwt.verify(auth, JWT_PASSWORD, (err, jwtData) => {
+                console.log(4444);
                 if (err) {
+                    console.log(55555);
                     return res.status(401).json({
                         status: false,
                         msg: -1
                     })
                 } else {
+                    console.log(6666666);
                     baomingInfo(params.id, tempCont).then(function (msg) {
+                        console.log(77777777);
                         res.json(msg);
+                    }).catch(function (err) {
+                        console.log(88888);
                     });
                 }
             });
