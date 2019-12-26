@@ -90,25 +90,32 @@ router.get('/', bodyParser.json(), function (req, res, next) {
                 auth = auth.split('Bearer').pop().trim();
             }
 
-            jwt.verify(auth, JWT_PASSWORD, (err, jwtData) => {
-                console.log(4444);
-                if (err) {
-                    console.log(55555);
-                    return res.status(401).json({
-                        status: false,
-                        msg: -1
-                    })
+            // jwt.verify(auth, JWT_PASSWORD, (err, jwtData) => {
+            //     console.log(4444);
+            //     if (err) {
+            //         console.log(55555);
+            //         return res.status(401).json({
+            //             status: false,
+            //             msg: -1
+            //         })
 
-                    tempCont.end();
-                } else {
-                    console.log(6666666);
-                    baomingInfo(params.id, tempCont).then(function (msg) {
-                        console.log(77777777);
-                        res.json(msg);
-                    }).catch(function (err) {
-                        console.log(88888);
-                    });
-                }
+            //         tempCont.end();
+            //     } else {
+            //         console.log(6666666);
+            //         baomingInfo(params.id, tempCont).then(function (msg) {
+            //             console.log(77777777);
+            //             res.json(msg);
+            //         }).catch(function (err) {
+            //             console.log(88888);
+            //         });
+            //     }
+            // });
+
+            baomingInfo(params.id, tempCont).then(function (msg) {
+                console.log(77777777);
+                res.json(msg);
+            }).catch(function (err) {
+                console.log(88888);
             });
 
         }
