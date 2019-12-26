@@ -98,6 +98,8 @@ router.get('/', bodyParser.json(), function (req, res, next) {
                         status: false,
                         msg: -1
                     })
+
+                    tempCont.end();
                 } else {
                     console.log(6666666);
                     baomingInfo(params.id, tempCont).then(function (msg) {
