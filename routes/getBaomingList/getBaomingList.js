@@ -70,7 +70,7 @@ router.get('/', bodyParser.json(), function (req, res, next) {
             tempCont.release();
         } else {
             console.log(1111);
-            // var params = url.parse(req.url, true).query;
+            var params = url.parse(req.url, true).query;
 
             // let auth = req.headers.authorization;
 
