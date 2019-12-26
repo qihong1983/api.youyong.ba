@@ -111,6 +111,7 @@ router.get('/', bodyParser.json(), function (req, res, next) {
             //     }
             // });
 
+            console.log(params.id, 'params.id');
             baomingInfo(params.id, tempCont).then(function (msg) {
                 console.log(77777777);
                 // tempCont.release();
