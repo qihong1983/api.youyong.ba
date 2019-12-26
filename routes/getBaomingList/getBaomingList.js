@@ -33,9 +33,9 @@ const baomingInfo = (classId, tempCont) => {
     console.log(2222);
     return new Promise(async function (resolve, reject) {
         var querySql = `select id,userId, avatar,user from baoming where classId = ${classId}`;
-
+        console.log(3333);
         await tempCont.query(`${querySql}`, async function (error, rows, fields) {
-
+            console.log(444);
             tempCont.release();
             var data = null;
             if (!!error) {
