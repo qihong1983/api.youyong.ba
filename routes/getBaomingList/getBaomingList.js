@@ -59,7 +59,7 @@ const baomingInfo = (classId, tempCont) => {
 
 router.get('/', bodyParser.json(), function (req, res, next) {
 
-    console.log('*******', connection);
+    // console.log('*******', connection);
 
     connection.getConnection(async function (error, tempCont) {
         // tempCont.release();
