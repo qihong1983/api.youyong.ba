@@ -74,21 +74,25 @@ router.get('/', bodyParser.json(), function (req, res, next) {
             tempCont.release();
         } else {
             console.log(1111);
-            var params = url.parse(req.url, true).query;
+            // var params = url.parse(req.url, true).query;
 
-            let auth = req.headers.authorization;
+            // let auth = req.headers.authorization;
 
-            if (!auth || !auth.startsWith('Bearer')) {
+            // if (!auth || !auth.startsWith('Bearer')) {
 
-                console.log(22222);
-                return res.status(401).json({
-                    status: false,
-                    msg: -1
-                });
-            } else {
-                console.log(333333);
-                auth = auth.split('Bearer').pop().trim();
-            }
+            //     console.log(22222);
+            //     return res.status(401).json({
+            //         status: false,
+            //         msg: -1
+            //     });
+            // } else {
+            //     console.log(333333);
+            //     auth = auth.split('Bearer').pop().trim();
+            // }
+
+
+
+
 
             // jwt.verify(auth, JWT_PASSWORD, (err, jwtData) => {
             //     console.log(4444);
