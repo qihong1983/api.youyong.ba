@@ -29,6 +29,8 @@ var connection = mysql.createPool({
  */
 
 const baomingInfo = (classId, tempCont) => {
+
+    console.log(2222);
     return new Promise(async function (resolve, reject) {
         var querySql = `select id,userId, avatar,user from baoming where classId = ${classId}`;
 
