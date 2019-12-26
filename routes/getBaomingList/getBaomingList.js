@@ -13,21 +13,15 @@ const Mock = require('mockjs');
 var Random = Mock.Random;
 var url = require('url');
 
-// var connection = mysql.createPool({
-//     host: '39.106.140.80',
-//     user: 'root',
-//     password: 'Qihong38752673',
-//     database: 'youyongba',
-//     multipleStatements: true
-// });
-
-
 var connection = mysql.createPool({
     host: '39.106.140.80',
     user: 'root',
     password: 'Qihong38752673',
-    database: 'youyongba'
+    database: 'youyongba',
+    multipleStatements: true
 });
+
+
 
 
 /**
@@ -117,7 +111,7 @@ router.get('/', bodyParser.json(), function (req, res, next) {
 
             baomingInfo(params.id, tempCont).then(function (msg) {
                 console.log(77777777);
-                tempCont.release();
+                // tempCont.release();
                 res.json(msg);
             }).catch(function (err) {
                 console.log(88888);
