@@ -103,9 +103,9 @@ const getAccessToken = (data, tempCont) => {
 
         console.log(data, 'datadatadata');
 // "https://api.weixin.qq.com/sns/jscode2session?appid=$appid&secret=$appsecret&js_code=$code&grant_type=authorization_code"
-         let res = await fetch(`https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx97ee8c3012196e00&secret=12536e3bbb2207c6f683cefb73372798&code=${data.code}&grant_type=authorization_code`, {
+        //  let res = await fetch(`https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx97ee8c3012196e00&secret=12536e3bbb2207c6f683cefb73372798&code=${data.code}&grant_type=authorization_code`, {
      
-        // let res = await fetch(`https://api.weixin.qq.com/sns/jscode2session?appid=wx97ee8c3012196e00&secret=12536e3bbb2207c6f683cefb73372798&js_code=${data.code}&grant_type=authorization_code`, {
+        let res = await fetch(`https://api.weixin.qq.com/sns/jscode2session?appid=wx97ee8c3012196e00&secret=12536e3bbb2207c6f683cefb73372798&js_code=${data.code}&grant_type=authorization_code`, {
 
      
         // let res = await fetch(`http://localhost:8081/list?page=${data.offset - 1}&keyword=${encodeURI(data.keyword)}`, {
