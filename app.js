@@ -59,6 +59,7 @@ var okbaoming = require('./routes/okbaoming/okbaoming');
 
 
 var wxLogin = require('./routes/wxLogin/wxLogin');
+var wxLogin2 = require('./routes/wxLogin/wxLogin2');
 
 let jwt = require('jsonwebtoken');
 var JWT_PASSWORD = 'token';
@@ -125,6 +126,7 @@ app.use('/okbaoming', okbaoming);
 // var wxLogin = require('./routes/wxLogin/wxLogin');
 
 app.use('/wxLogin', wxLogin);
+app.use('/wxLogin2', wxLogin2);
 
 
 
