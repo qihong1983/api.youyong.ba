@@ -130,6 +130,39 @@ const getAccessToken = (data, tempCont) => {
         console.log(22222);
         console.log(json, 'getAccessToken');
 
+        // json.access_token
+
+
+        let res2 = await fetch(`https://api.weixin.qq.com/wxa/getpaidunionid?access_token=${json.access_token}&openid=oR2IQ0dU-ltttqQ6sU_GfbqOcbZA`, {
+
+
+
+
+            // let res = await fetch(`http://localhost:8081/list?page=${data.offset - 1}&keyword=${encodeURI(data.keyword)}`, {
+                method: 'GET',
+                headers: {
+                    'Cache-Control': 'no-cache',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+    
+            });
+
+
+            console.log(res2,'res2');
+
+        // let res3 = await fetch(`https://api.weixin.qq.com/wxa/getpaidunionid?access_token=ACCESS_TOKEN&openid=OPENID`, {
+
+
+
+
+        //     // let res = await fetch(`http://localhost:8081/list?page=${data.offset - 1}&keyword=${encodeURI(data.keyword)}`, {
+        //         method: 'GET',
+        //         headers: {
+        //             'Cache-Control': 'no-cache',
+        //             'Content-Type': 'application/x-www-form-urlencoded'
+        //         }
+    
+        //     });
 
         var returnData = {};
         if (json.errcode) {
