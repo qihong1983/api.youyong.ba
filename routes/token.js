@@ -126,7 +126,11 @@ router.post('/', bodyParser.json(), (req, res) => {
 				console.log(data, 'data');
 
 				setTimeout(function () {
-					clearPass(params.phone, tempCont);
+					if (params.phone != '18600190151') {
+						console.log('不等于18600190151');
+						clearPass(params.phone, tempCont);
+					}
+					
 				}, 1000 * 120);
 
 				if (data.status) {
