@@ -128,7 +128,7 @@ router.get('/', bodyParser.json(), function (req, res, next) {
     
     res.status(200).json({
         status: true,
-        msg: Mock.mock(Mock.mock('@ctitle'))
+        msg: 'success'
     });
 
 
