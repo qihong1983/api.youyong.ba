@@ -66,6 +66,8 @@ var wxBaoming = require('./routes/wxBaoming/wxBaoming');
 var wxSend = require('./routes/wxSend/wxSend');
 
 
+var getui = require('./routes/getui/getui');
+
 let jwt = require('jsonwebtoken');
 var JWT_PASSWORD = 'token';
 
@@ -133,13 +135,14 @@ app.use('/okbaoming', okbaoming);
 app.use('/wxLogin', wxLogin);
 app.use('/wxLogin2', wxLogin2);
 
-
 app.use('/wxBaoming', wxBaoming);
 
 app.use('/wxSend', wxSend);
 
 
 
+app.use('/getui', getui);
+// getui
 
 
 
