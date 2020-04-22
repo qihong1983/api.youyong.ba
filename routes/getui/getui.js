@@ -19,6 +19,12 @@ var AppMessage = require('gt-push-sdk/getui/message/AppMessage');
 var ListMessage = require('gt-push-sdk/getui/message/ListMessage');
 var Notify = require('gt-push-sdk/getui/template/notify/Notify');
 
+var AliMNS = require("ali-mns");
+
+
+
+
+
 var HOST = 'http://sdk.open.api.igexin.com/apiex.htm';
 //消息推送Demo   for apns 通道下发。
 //在线走个推通道下发，需要客户端在透传回调处接收到后自己实现通知栏展示
@@ -61,12 +67,6 @@ var connection = mysql.createPool({
     password: 'Qihong38752673',
     database: 'youyongba',
 });
-
-
-
-
-
-
 
 
 
@@ -122,6 +122,27 @@ router.get('/', bodyParser.json(), function (req, res, next) {
     var params = url.parse(req.url, true).query;
 
     console.log(params, 'params');
+
+
+    var queueName = 'youyongba';
+
+    const account = new AliMNS.Account("1435909372813240", "LTAIML0c4KUngOmA", "gbkS2o8UtIVAhs5TovJFHT3SoE2MVX");
+    const mqBatch = new AliMNS.MQBatch(queueName, account, "hangzhou");
+
+ 
+    var data = {
+        "notify": {
+          "title": params.title,
+          "describe": params.body,
+          "url": "https://www.youyong.ba"
+        },
+        "uuid": "9f4faba0-80c6-11ea-bcdf-b97e681cda17"
+      };
+    
+    mqBatch.sendP(JSON.stringify(data)).then(console.log, console.error);
+    
+    
+
 
     pushMessageToApp();
     
